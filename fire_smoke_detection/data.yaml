@@ -1,0 +1,13 @@
+# 로컬 환경용 경로 설정 (YAML 파일 기준 상대 경로)
+train: data/train/images
+val: data/val/images  
+test: data/test/images
+
+# Classes
+names: ['smoke', 'fire']  # Replace with your actual class names
+
+# Counts
+nc: 2  # number of classes
+train_count: 14122
+val_count: 3099
+test_count: 4306
