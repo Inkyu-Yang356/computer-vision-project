@@ -1,0 +1,43 @@
+
+# RT-DETR Fire-Smoke Detection 최적 하이퍼파라미터
+# YOLOv11n 학습 결과 분석 기반 (mAP50: 0.7615 → 0.80+ 목표)
+
+# ========== 학습률 설정 ==========
+lr0: 0.002              # 초기 학습률 (안정적 수렴)
+lrf: 0.01               # 최종 학습률 비율
+momentum: 0.937         # SGD momentum
+weight_decay: 0.0005    # L2 정규화 (과적합 방지)
+warmup_epochs: 5.0      # Warm-up 기간
+warmup_momentum: 0.8
+warmup_bias_lr: 0.1
+
+# ========== Data Augmentation ==========
+# Mosaic & Mix
+mosaic: 1.0             # Mosaic augmentation (0.0-1.0)
+mixup: 0.15             # MixUp augmentation (클래스 경계 학습)
+copy_paste: 0.3         # Copy-Paste (작은 화재/연기 객체 증강)
+
+# 기하학적 변환
+degrees: 10.0           # 회전 각도 (-deg ~ +deg) - 카메라 각도 변화
+translate: 0.2          # 이동 (0.0-1.0) - 객체 위치 다양화
+scale: 0.7              # 크기 변화 (gain) - 화재 크기 다양성
+shear: 0.0              # 전단 변환 (화재에는 불필요)
+perspective: 0.0        # 원근 변환 (화재에는 불필요)
+flipud: 0.0             # 상하 반전 (화재는 아래, 연기는 위 - 비활성화)
+fliplr: 0.5             # 좌우 반전 (화재는 대칭적)
+
+# 색상 변환 (화재: 빨강/주황, 연기: 회색/검정)
+hsv_h: 0.015            # 색조 변화 (화재 색상 다양성)
+hsv_s: 0.7              # 채도 변화 (연기 농도: 옅은~짙은)
+hsv_v: 0.4              # 명도 변화 (조명: 주간/야간)
+
+# 고급 설정
+close_mosaic: 20        # 마지막 N epoch에서 mosaic 비활성화 (정확도 향상)
+
+# ========== 손실 함수 가중치 (RT-DETR 기본값) ==========
+box: 7.5                # Box loss gain
+cls: 0.5                # Class loss gain
+dfl: 1.5                # DFL loss gain
+
+# ========== 기타 설정 ==========
+plots: true             # 학습 그래프 저장
