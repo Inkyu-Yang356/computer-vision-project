@@ -34,7 +34,7 @@
 
 ## 4.2 학습 구성
 - Epoch: 50 (두 모델 비교 동형 실험)
-- Batch: 32 (로컬 4050 한계에 맞춤)
+- Batch: 32 (GPU Cloud 환경 한계에 맞춤)
 - ImgSz: 640
 - Optimizer 스케줄: Ultralytics 기본(adam-like 내부 설정) / 하이퍼파라미터 lr0=0.002 적용 (RT-DETR hyp)
 
